@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cryptic Poem Puzzle - Indian Temple Night</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Roboto Slab', serif;
+      background:
+        linear-gradient(rgba(10,10,30,0.85), rgba(10,10,30,0.95)),
+        url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1470&q=80') no-repeat center bottom fixed;
+      background-size: cover;
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .container {
+      max-width: 900px;
+      background: rgba(15,15,25,0.85);
+      border-radius: 12px;
+      padding: 2rem 3rem;
+      display: flex;
+      gap: 2rem;
+      box-shadow: 0 0 30px #663322cc;
+      position: relative;
+      min-height: 480px;
+      user-select: none;
+    }
+
+    .poem-section {
+      flex: 1.4;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      user-select: text;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #f7cac9;
+      text-shadow: 0 0 10px #f7cac9;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      border-left: 4px solid #f7cac9;
+      padding-left: 1rem;
+      max-height: 230px;
+      overflow-y: auto;
+      background: rgba(0,0,0,0.3);
+      border-radius: 8px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #f7cac9;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    button {
+      background: #f7cac9;
+      color: #121212;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #f497a1;
+    }
+
+    #result {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: center;
+      min-height: 1.5em;
+    }
+
+    .hint-section {
+      flex: 0.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .kimono-girl {
+  width: 160px;
+  height: 320px;
+  background: url('https://cdn.pixabay.com/photo/2020/06/14/20/24/geisha-5298947_1280.png') no-repeat center;
+  background-size: contain;
+  filter: drop-shadow(0 0 8px #f7cac9aa);
+  cursor: pointer;
+  transition: filter 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+
+    .kimono-girl:hover {
+      filter: drop-shadow(0 0 14px #f7cac9ff);
+    }
+
+    .hint-box {
+      background: rgba(247, 202, 201, 0.9);
+      color: #121212;
+      padding: 0.8rem 1rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #f7cac9cc;
+      font-style: italic;
+      font-size: 0.95rem;
+      max-width: 220px;
+      text-align: center;
+      line-height: 1.3;
+      display: none;
+    }
+
+    pre::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    pre::-webkit-scrollbar-thumb {
+      background-color: #f7cac9aa;
+      border-radius: 4px;
+    }
+
+    pre::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: 1rem;
+      }
+
+      .container {
+        flex-direction: column;
+        min-height: auto;
+      }
+
+      .hint-section {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .kimono-girl {
+        width: 100px;
+        height: 200px;
+        margin-bottom: 0;
+      }
+
+      .hint-box {
+        max-width: none;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Cryptic Poem Puzzle">
+    <section class="poem-section">
+      <h1>Cryptic Poem Puzzle</h1>
+      <pre tabindex="0" aria-label="Cryptic poem text">
+I wake where silence shrouds the field,
+On thorn’s soft breath, my truths are sealed.
+A crown of bloom with scent unseen,
+Where even thorns confess my name.
+
+To find my face, heed cryptic lore:
+Line one, word four, then letter four.
+From second line, take letter three—
+In line the third, the sixth shall be.
+Then one from last, but read reversed—
+The start of love, from end unearthed.
+      </pre>
+
+      <label for="answerInput">What is the answer?</label>
+      <input type="text" id="answerInput" placeholder="Enter your answer here" autocomplete="off" aria-describedby="result" />
+      <button id="submitBtn" aria-label="Submit your answer">Submit</button>
+      <div id="result" role="alert" aria-live="polite"></div>
+    </section>
+
+    <aside class="hint-section" aria-label="Hint from kimono-clad girl">
+      <div class="kimono-girl" tabindex="0" role="button" aria-pressed="false" aria-label="Click to toggle hint"></div>
+      <div class="hint-box" id="hintBox" aria-hidden="true">
+        <p><strong>Hint:</strong> Sometimes, the answer hides in letters—count carefully, and remember the lines.</p>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const answerInput = document.getElementById('answerInput');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+    const kimonoGirl = document.querySelector('.kimono-girl');
+    const hintBox = document.getElementById('hintBox');
+
+    submitBtn.addEventListener('click', () => {
+      const userAnswer = answerInput.value.trim().toLowerCase();
+      if (userAnswer === 'rose') {
+        resultDiv.textContent = 'Correct! The answer is ROSE 🌹';
+        resultDiv.style.color = '#f7cac9';
+      } else if (userAnswer === '') {
+        resultDiv.textContent = 'Please enter an answer.';
+        resultDiv.style.color = '#f497a1';
+      } else {
+        resultDiv.textContent = 'Incorrect, try again.';
+        resultDiv.style.color = '#f497a1';
+      }
+    });
+
+    answerInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        submitBtn.click();
+      }
+    });
+
+    kimonoGirl.addEventListener('click', toggleHint);
+    kimonoGirl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleHint();
+      }
+    });
+
+    function toggleHint() {
+      const isHidden = hintBox.style.display === 'none' || hintBox.style.display === '';
+      hintBox.style.display = isHidden ? 'block' : 'none';
+      kimonoGirl.setAttribute('aria-pressed', isHidden ? 'true' : 'false');
+      hintBox.setAttribute('aria-hidden', !isHidden);
+    }
+  </script>
+</body>
+</html>

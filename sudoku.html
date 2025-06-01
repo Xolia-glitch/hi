@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sudoku Challenge</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #121212;
+      color: #eee;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      color: #f7cac9;
+    }
+
+    .sudoku {
+      display: grid;
+      grid-template-columns: repeat(9, 40px);
+      grid-template-rows: repeat(9, 40px);
+      gap: 2px;
+    }
+
+    .sudoku input {
+      width: 38px;
+      height: 38px;
+      text-align: center;
+      font-size: 1rem;
+      background: #222;
+      color: #eee;
+      border: 1px solid #444;
+    }
+
+    .sudoku input:disabled {
+      background: #555;
+      color: #aaa;
+    }
+
+    .active {
+      background: #f7cac9;
+      color: #121212;
+    }
+
+    .btn {
+      margin-top: 1rem;
+      background: #f7cac9;
+      color: #121212;
+      border: none;
+      padding: 0.6rem 1.2rem;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Solve the Sudoku: Only Columns 1, 5, and 9!</h1>
+  <div class="sudoku">
+    <!-- Loop to create 81 cells -->
+    <!-- Only columns 1, 5, and 9 are active -->
+    <script>
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          const input = document.createElement('input');
+          input.setAttribute('maxlength', '1');
+          input.setAttribute('type', 'text');
+
+          if (col === 0 || col === 4 || col === 8) {
+            input.classList.add('active');
+          } else {
+            input.disabled = true;
+          }
+
+          document.body.querySelector('.sudoku').appendChild(input);
+        }
+      }
+    </script>
+  </div>
+  <button class="btn" onclick="alert('Check logic or move on to the next puzzle.')">Submit</button>
+</body>
+</html>

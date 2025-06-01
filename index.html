@@ -229,8 +229,13 @@ The start of love, from end unearthed.
     submitBtn.addEventListener('click', () => {
       const userAnswer = answerInput.value.trim().toLowerCase();
       if (userAnswer === 'rose') {
-        resultDiv.textContent = 'Correct! The answer is ROSE 🌹';
-        resultDiv.style.color = '#f7cac9';
+  resultDiv.textContent = 'Correct! The answer is ROSE 🌹';
+  resultDiv.style.color = '#f7cac9';
+  setTimeout(() => {
+    window.location.href = 'sudoku.html';
+  }, 1500); // Optional delay for effect
+}
+
       } else if (userAnswer === '') {
         resultDiv.textContent = 'Please enter an answer.';
         resultDiv.style.color = '#f497a1';

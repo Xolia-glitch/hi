@@ -62,27 +62,34 @@
 </head>
 <body>
   <h1>Solve the Sudoku: Only Columns 1, 5, and 9!</h1>
-  <div class="sudoku">
-    <!-- Loop to create 81 cells -->
-    <!-- Only columns 1, 5, and 9 are active -->
-    <script>
-      for (let row = 0; row < 9; row++) {
-        for (let col = 0; col < 9; col++) {
-          const input = document.createElement('input');
-          input.setAttribute('maxlength', '1');
-          input.setAttribute('type', 'text');
-
-          if (col === 0 || col === 4 || col === 8) {
-            input.classList.add('active');
-          } else {
-            input.disabled = true;
-          }
-
-          document.body.querySelector('.sudoku').appendChild(input);
-        }
-      }
-    </script>
-  </div>
+  <div class="sudoku" id="sudokuGrid"></div>
   <button class="btn" onclick="alert('Check logic or move on to the next puzzle.')">Submit</button>
+
+  <script>
+    const grid = document.getElementById('sudokuGrid');
+    const lastColValues = [2, 1, 1, 2, 1, 2, 2, 1, 5];
+
+    for (let row = 0; row < 9; row++) {
+      for (let col = 0; col < 9; col++) {
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.maxLength = '1';
+
+        if (col === 0 || col === 4) {
+          // Editable active columns
+          input.classList.add('active');
+        } else if (col === 8) {
+          // Pre-filled final column (column 9)
+          input.value = lastColValues[row];
+          input.disabled = true;
+          input.classList.add('active');
+        } else {
+          input.disabled = true;
+        }
+
+        grid.appendChild(input);
+      }
+    }
+  </script>
 </body>
 </html>
